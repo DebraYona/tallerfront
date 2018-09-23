@@ -127,7 +127,7 @@ class Content extends Component{
       //  url = url.concat('detallada/');
         let url = URL.url.concat('recaudaciones/detallada/');
         if(this.state.nombre_apellido === "" && this.state.concepto === ""&& this.state.recibo === "" &&
-            this.state.dates2 === "" && this.state.dates === "" && this.state.dni === ""){
+            this.state.dates2 === "" && this.state.dates === "" && this.state.dni === "" && this.state.codigo === ""){
             this.setState({
                 mensaje:"Casilleros vacios",
                 estado:true,
@@ -145,6 +145,8 @@ class Content extends Component{
                 "dni":this.state.dni,
                 "codigo":this.state.codigo
             };
+            console.log(arra);
+
             this.setState({
                 isLoading:true,
                 mensaje:"",

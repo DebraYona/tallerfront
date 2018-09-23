@@ -282,7 +282,7 @@ class ListarComponentes extends Component {
                         </div>
                         <p> </p>
                     </div>
-                    <table className="tabla" id="table">
+                    <table className="tabla table-striped table-bordered table-hover" id="table">
                         <thead>
                         <tr className="tabla-cabecera">
                             <th>Nro</th>
