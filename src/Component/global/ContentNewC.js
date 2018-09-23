@@ -160,24 +160,28 @@ class Content extends Component{
                 body: JSON.stringify(arra, null, 2)
 
             })
-
-                .then(responseJson => {
-                    this.setState({
-                        lista: responseJson.data,
-                        estado:true,
-                        operacion: (responseJson.data!==null && responseJson.data.length!==0),
-                        mensaje:(responseJson.data!==null && responseJson.data.length!==0)?(""):("Datos no encontrados"),
-                        isLoading:false
-                    });
-                    //console.log( responseJson.data.length);
+            .then((response) => {
+                return response.json()
+            })
+            .then(responseJson => {
+                this.setState({
+                    lista: responseJson.data,
+                    estado:true,
+                    operacion: (responseJson.data!==null && responseJson.data.length!==0),
+                    mensaje:(responseJson.data!==null && responseJson.data.length!==0)?(""):("Datos no encontrados"),
+                    isLoading:false
                 });
-        }
+                //console.log( responseJson.data.length);
+            });
+
     }
-    handleKeyPress = (event) => {
-        if(event.key === 'Enter'){
-            this.handleSearchClick();
-        }
-    };
+
+ }
+ handleKeyPress = (event) => {
+     if(event.key === 'Enter'){
+         this.handleSearchClick();
+     }
+ };
 
 
     render(){

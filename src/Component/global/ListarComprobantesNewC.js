@@ -41,7 +41,7 @@ class ListarComponentes extends Component {
         if (lista !== null) {
             lista.map((item,key) => {
                 arreglo=arreglo.concat(new this.Obj(item.id_rec,item.observacion,item.id_ubicacion && item.id_ubicacion,item.id_tipo,item.validado,item.nombre,
-                    item.concepto,item.codigo,item.numero,item.importe,item.fecha,item.id_alum));
+                    item.concepto,item.codigo,item.recibo,item.importe,item.fecha,item.id_alum));
                 return null;
             });
             //console.log(arreglo);
@@ -102,7 +102,7 @@ class ListarComponentes extends Component {
     }
 
     // crear un objeto para enviar al server
-    crearJSON(codigo,concepto,ubic,id_rec,numero,importe,obs,flag,fecha,validado,tipo){
+    crearJSON(codigo,concepto,ubic,id_rec,recibo,importe,obs,flag,fecha,validado,tipo){
         if(obs==null)obs="";
         if(ubic==null)ubic=0;
         if(flag==null)flag=false;
@@ -111,7 +111,7 @@ class ListarComponentes extends Component {
         this.concepto=concepto;
         this.ubic=ubic;
         this.codigo=codigo;
-        this.numero=numero;
+        this.recibo=recibo;
         this.importe=importe;
         this.obs=flag+"-"+obs;
         this.fecha=fecha;
@@ -125,7 +125,7 @@ class ListarComponentes extends Component {
         const arreglo=this.state.data;
         let arreglo2=[];
         arreglo.map(item=>{
-            arreglo2=arreglo2.concat(new this.crearJSON(item.codigo,item.concepto,item.ubic,item.id_rec,item.numero,item.importe,
+            arreglo2=arreglo2.concat(new this.crearJSON(item.codigo,item.concepto,item.ubic,item.id_rec,item.recibo,item.importe,
                 item.obs,item.flag,item.fecha,item.validado,item.tipo))
             return null;
         });
@@ -138,7 +138,7 @@ class ListarComponentes extends Component {
     }
 
 //crea un objeto para pasar al hijo
-    Obj(id_rec,obs,ubic,tipo,validado,nombre,concepto,codigo,numero,importe,fecha,id_alum){
+    Obj(id_rec,obs,ubic,tipo,validado,nombre,concepto,codigo,recibo,importe,fecha,id_alum){
         this.id_rec=id_rec;
         this.obs=obs;
         this.ubic=ubic;
@@ -147,7 +147,7 @@ class ListarComponentes extends Component {
         this.nombre=nombre;
         this.concepto=concepto;
         this.codigo=codigo;
-        this.numero=numero;
+        this.recibo=recibo;
         this.importe=importe;
         this.fecha= fecha && fecha.substr(8,2)+"-"+fecha.substr(5,2)+"-"+fecha.substr(0,4);
         this.id=id_alum;
@@ -304,7 +304,7 @@ class ListarComponentes extends Component {
                                 <td onClick={(e)=>this.eventoNombre(dynamicData.id, dynamicData.nombre, dynamicData.codigo)} title="click para añadir un nuevo registro" className="detalles" nam={dynamicData.nombre}>{dynamicData.nombre}</td>
                                 <td>{dynamicData.concepto}</td>
                                 <td>{dynamicData.codigo}</td>
-                                <td>{dynamicData.numero}</td>
+                                <td>{dynamicData.recibo}</td>
                                 <td>{dynamicData.importe}</td>
                                 <td>{dynamicData.fecha}</td>
                                 <td><Combo items={this.state.ubicDato} val={this.handleChangeUbic} ubic={dynamicData.ubic}
