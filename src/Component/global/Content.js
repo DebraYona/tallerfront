@@ -34,6 +34,9 @@ class Content extends Component{
         this.handleInputCodigo=this.handleInputCodigo.bind(this);
         this.handleSearchKey=this.handleSearchKey.bind((this));
         this.mostrarData=this.mostrarData.bind(this);
+        this.limpiar=this.limpiar.bind(this)
+        this.vaciado=this.vaciado.bind(this);
+
     }
     // leer del input Concepto
     handleInputConcepto(data){
@@ -115,8 +118,30 @@ class Content extends Component{
             this.handleSearchClick();
         }
     }
+    vaciado(){
+        this.setState({
+
+            nombre:"",
+            id_concepto:"",
+            dni:"",
+            codigo:"",
+            voucher:"",
+            periodoI:"",
+            periodoF:""
+
+        })
+      }
+    limpiar=(even)=>{
+
+
+     this.refs.formulario.reset()
+      //this.vaciado()
+        console.log("DSAEW");
+        console.log(this.state);
+    }
     //buscar
    handleSearchClick(e) {
+     e.preventDefault();
 
       //  let url = 'https://api-modulocontrol.herokuapp.com/recaudaciones/';
         //          url = url.concat('detallada/');
@@ -180,11 +205,12 @@ class Content extends Component{
         }
     };
     render(){
+      console.log(this.state.nombre_apellido);
         return(
           <div className="content">
 
               <div className="buscar">
-
+              <form ref="formulario" onSubmit={this.Limpiar} >
                   <div className="input-group mb-3 col-xs-12">
                         <div className="input-group mb-3 col-xs-12 col-sm-12 col-md-12 col-lg-6">
 
@@ -254,12 +280,13 @@ class Content extends Component{
                           <button id="Buscar" onClick={this.handleSearchClick} className="btn btn-primary">Buscar </button>
                           <Link to="/nueva" className="btn btn-primary boton_medio">Agregar</Link>
                           <a className="btn btn-primary" href="https://siga-fisi.herokuapp.com/dashboard" >Regresar</a>
+                          <button id="Limpiar" onClick={this.limpiar} className="btn btn-primary">Limpiar </button>
                       </div>
                       </div>
 
                   </div>
                   </div>
-
+                  </form>
 
                   </div>
               <div className={(this.state.isLoading)?("isLoading"):("listar")}>
