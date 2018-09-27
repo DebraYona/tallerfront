@@ -114,9 +114,10 @@ class Content extends Component{
         }
     }
     handleSearchKey(e){
-        if(e.key==="enter"){
-            this.handleSearchClick();
-        }
+        //if(e.key==="enter"){
+          //  this.handleSearchClick();
+        //}
+        document.Form.DefaulButton = 'enter'
     }
     vaciado(){
         this.setState({
@@ -132,16 +133,17 @@ class Content extends Component{
         })
       }
     limpiar=(even)=>{
-
+    //  even.preventDefault();
 
      this.refs.formulario.reset()
       //this.vaciado()
         console.log("DSAEW");
         console.log(this.state);
+      //  even.preventDefault();
     }
     //buscar
    handleSearchClick(e) {
-     e.preventDefault();
+
 
       //  let url = 'https://api-modulocontrol.herokuapp.com/recaudaciones/';
         //          url = url.concat('detallada/');
@@ -197,13 +199,13 @@ class Content extends Component{
                });
 
        }
-
+    e.preventDefault();
     }
-    handleKeyPress = (event) => {
+  /*  handleKeyPress = (event) => {
         if(event.key === 'Enter'){
             this.handleSearchClick();
         }
-    };
+    };*/
     render(){
       console.log(this.state.nombre_apellido);
         return(
