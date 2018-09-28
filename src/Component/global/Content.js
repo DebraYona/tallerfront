@@ -139,7 +139,7 @@ class Content extends Component{
       //this.vaciado()
         console.log("DSAEW");
         console.log(this.state);
-      //  even.preventDefault();
+      //  even.preventDefault();    
     }
     //buscar
    handleSearchClick(e) {
